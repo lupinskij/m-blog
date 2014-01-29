@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {{! Document Settings }}
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    {{! Page Meta }}
+    <title>{{meta_title}}</title>
+    <meta name="description" content="{{meta_description}}" />
+
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="shortcut icon" href="{{asset "favicon.ico"}}">
+
+    {{! Styles'n'Scripts }}
+    <link rel="stylesheet" type="text/css" href="{{asset "css/main.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/snap.css"}}" />
+    <link rel="stylesheet" type="text/css" href="{{asset "css/prettify.css"}}" />
+    <link rel="stylesheet" type="text/css" href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css"></link> 
+    {{! Ghost outputs important style and meta data with this tag }}
+    {{ghost_head}}
+</head>
+<body class="{{body_class}}">
+    <div class="snap-drawers">
+        <div class="snap-drawer snap-drawer-right">
+            <ul class="menu">
+                <li><a href="#" class="large-menu-item">Home</a></li>
+                <li><a href="#" class="large-menu-item">About Us</a></li>
+                <li><a href="#" class="large-menu-item">Experience</a></li>
+                <li><a href="#" class="large-menu-item">Work</a></li>
+                <li><a href="#" class="large-menu-item dimmed-link">Process</a></li>
+                <li><a href="#" class="large-menu-item dimmed-link">People</a></li>
+                <li><a href="#" class="large-menu-item dimmed-link">Contact</a></li>
+                <li><a href="#" class="large-menu-item dimmed-link">Blog</a></li>
+            </ul>
+            <div id="mc_embed_signup">
+            <form action=
+            "http://mojotech.us1.list-manage.com/subscribe/post?u=030d4c52dd20dee60c5da1324&amp;id=77a79b59b3" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate="">
+
+            <h4 class="subscribe-header">Stay up to date</h4>
+
+            <div class="mc-field-group">
+                <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
+                <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" />
+            </div>
+{{!--             
+            <div class="indicates-required">
+                <span class="asterisk">*</span> indicates required
+            </div> --}}
+
+            <div id="mce-responses" class="clear">
+            <div class="response" id="mce-error-response" style="display:none"></div>
+
+            <div class="response" id="mce-success-response" style=" display:none"></div>
+            </div>
+
+            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+
+            <div style="position: absolute; left: -5000px;">
+            <input type="text" name="b_030d4c52dd20dee60c5da1324_77a79b59b3" value="" />
+            </div>
+
+            <div class="clear">
+            <input type="submit" value="Subscribe" name="subscribe" id=
+            "mc-embedded-subscribe" class="btn btn-blue btn-lg" />
+            </div>
+            </form>
+            </div><!--End mc_embed_signup-->
+            <div class="twitter-follow">
+                <a href="https://twitter.com/mojotech" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @mojotech</a>
+                <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+            </div>
+        </div>
+    </div>
+    <div id="draw-menu">
+        <ul class="menu-icon">
+            <li class="menu-line"></li>
+            <li class="menu-line"></li>
+            <li class="menu-line"></li>
+        </ul>
+    </div>
+    <div id="content" class="snap-content">
+        <div class="wrapper">
+            <a href="{{@blog.url}}">
+                <img src="/assets/images/mojotech-full-logo.png" alt="MojoTech" width="141" height="41" class="logo" />
+            </a>
+        </div>
+            {{! Everything else gets inserted here }}
+            {{{body}}}
+        <div class="cl"></div>
+        <footer class="site-footer">
+            <div class="wrapper">
+                <div class="left footer-slogan">
+                    <img src="/assets/images/mojo-hex-blue.png" alt="MojoTech" width="32" height="28" class="footer-logo" />
+                    <h4 class="small-slogan">Development by Design</h4>
+                </div>
+                <ul class="footer-links right">
+                    <li><a href="http://www.mojotech.com/" title="MojoTech" target="_blank">Home</a></li>
+                    <li><a href="http://www.mojotech.com/work" title="Our Work" target="_blank">Work</a></li>
+                    <li><a href="http://www.mojotech.com/experience" title="See How We Do It" target="_blank">Experience</a></li>
+                </ul>
+                <div class="cl"></div>
+            </div>
+        </footer>
+    </div>
+
+
+    {{! Ghost outputs important scripts and data with this tag }}
+    {{ghost_foot}}
+
+    {{! The main JavaScript file for Casper }}
+    <script>
+        function styleCode() {
+            if (typeof disableStyleCode != 'undefined') { return; }
+
+            var a = false;
+            
+            $('code').each(function() {
+                if (!$(this).hasClass('prettyprint')) {
+                    $(this).addClass('prettyprint');
+                    a = true;
+                }
+            });
+
+            if (a) { prettyPrint(); } 
+        }
+
+        $(function() {styleCode();});
+    </script>
+
+    <script type="text/javascript" src="{{asset "js/vendor/modernizr.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/vendor/prettify.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/vendor/snap.min.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/vendor/jquery.fitvids.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/index.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/menu.js"}}"></script>
+    <script type="text/javascript" src="{{asset "js/main.js"}}"></script>
+
+</body>
+</html>

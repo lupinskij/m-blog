@@ -1,0 +1,69 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+    <div class="{{post_class}}">
+        <div class="wrapper">
+        {{! Everything inside the #post tags pulls data from the post }}
+        {{#post}}
+
+            <h4 class="post-meta"><time datetime="{{date format='MMMM DD, YYYY'}}">{{date format="MMMM DD, YYYY"}}</time> {{tags prefix="on "}}</h4>
+
+            <h1 class="post-title">{{{title}}}</h1>
+
+            <div class="post-content">
+                {{content}}
+            </div>
+
+            <div class="post-footer">
+
+                <section class="author bottom-light-bor">
+                    <img src="{{author.image}}" title="Author photo" alt="{{author.name}}" class="left author-image" />
+                    <div class="left">
+                        <h4 class="author-name">{{author.name}}</h4>
+                        <a href="{{author.website}}" class="display-inline-block author-website">{{author.website}}</a>
+                    </div>
+                    <div class="cl"></div>
+                    <p class="small author-bio">{{author.bio}}</p>
+                </section>
+
+                <section class="share">
+                    <h4 class="post-share-header">Share this post</h4>
+                    <a class="twitter share-block-item" href="http://twitter.com/share?text={{encode title}}&url={{url absolute="true"}}"
+                        onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                        <img class="social-img twitter-icon" src="/assets/images/networks/twitter@2x.png" alt="Twitter" width="18" height="15" />
+                    </a>
+                    <a class="facebook share-block-item" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+                        onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                        <img class="social-img" src="/assets/images/networks/facebook@2x.png" alt="Twitter" width="18" height="18" />
+                    </a>
+                    <a class="googleplus share-block-item" href="https://plus.google.com/share?url={{url absolute="true"}}"
+                       onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                        <img class="social-img" src="/assets/images/networks/googleplus@2x.png" alt="Twitter" width="19" height="19" />
+                    </a>
+                </section>
+
+            </div>
+        </div>
+        <div class="post-comments">
+            <div class="wrapper">
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    var disqus_shortname = 'mojotech'; // required: replace example with your forum shortname
+                    var disqus_identifier = '{{post.id}}'; // make sure to use the post.id as an identifier, otherwise disqus will use the pages url per default, which might be problematic...
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+        </div>
+
+        {{/post}}
+
+    </div>

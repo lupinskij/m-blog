@@ -1,0 +1,10 @@
+<div class="pagination" role="navigation">
+    {{#if prev}}
+        <a class="btn wire btn-default newer-posts btn-page left" href="{{pageUrl prev}}">Newer Posts</a>
+    {{/if}}
+    <span class="page-number altisbold">Page {{page}} of {{pages}}</span>
+    {{#if next}}
+        <a class="btn wire btn-default older-posts btn-page right" href="{{pageUrl next}}">Older Posts</a>
+    {{/if}}
+    <div class="cl"></div>
+</div>

@@ -1,0 +1,80 @@
+[2014-01-21T18:16:56.413Z] (sys) Starting
+[31m
+ERROR:[39m [31mCannot find module './binding/Release/node-v11-linux-x64/node_sqlite3.node'[39m
+
+Error: Cannot find module './binding/Release/node-v11-linux-x64/node_sqlite3.node'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)
+    at Object.<anonymous> (/home/vagrant/code/Ghost/node_modules/sqlite3/lib/sqlite3.js:7:15)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Module.require (module.js:364:17) 
+
+[2014-01-21T18:20:09.574Z] (sys) Starting
+[31m
+ERROR:[39m [31mCannot find module './binding/Release/node-v11-linux-x64/node_sqlite3.node'[39m
+
+Error: Cannot find module './binding/Release/node-v11-linux-x64/node_sqlite3.node'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)
+    at Object.<anonymous> (/home/vagrant/code/Ghost/node_modules/sqlite3/lib/sqlite3.js:7:15)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Module.require (module.js:364:17) 
+
+[2014-01-21T18:22:32.918Z] (sys) Starting
+[31m
+ERROR:[39m [31mCannot find module './binding/Release/node-v11-linux-x64/node_sqlite3.node'[39m
+
+Error: Cannot find module './binding/Release/node-v11-linux-x64/node_sqlite3.node'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)
+    at Object.<anonymous> (/home/vagrant/code/Ghost/node_modules/sqlite3/lib/sqlite3.js:7:15)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Module.require (module.js:364:17) 
+
+[2014-01-21T18:24:36.505Z] (sys) Starting
+[31m
+ERROR:[39m [31mCannot find module './binding/Release/node-v11-linux-x64/node_sqlite3.node'[39m
+
+Error: Cannot find module './binding/Release/node-v11-linux-x64/node_sqlite3.node'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)
+    at Object.<anonymous> (/home/vagrant/code/Ghost/node_modules/sqlite3/lib/sqlite3.js:7:15)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Module.require (module.js:364:17) 
+
+[2014-01-21T18:31:16.481Z] (sys) Starting
+[31m
+ERROR:[39m [31mCannot find module './binding/Release/node-v11-linux-x64/node_sqlite3.node'[39m
+
+Error: Cannot find module './binding/Release/node-v11-linux-x64/node_sqlite3.node'
+    at Function.Module._resolveFilename (module.js:338:15)
+    at Function.Module._load (module.js:280:25)
+    at Module.require (module.js:364:17)
+    at require (module.js:380:17)
+    at Object.<anonymous> (/home/vagrant/code/Ghost/node_modules/sqlite3/lib/sqlite3.js:7:15)
+    at Module._compile (module.js:456:26)
+    at Object.Module._extensions..js (module.js:474:10)
+    at Module.load (module.js:356:32)
+    at Function.Module._load (module.js:312:12)
+    at Module.require (module.js:364:17) 
+

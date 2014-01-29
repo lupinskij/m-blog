@@ -1,0 +1,29 @@
+@font-face {
+    font-family: 'MetaSerifOT-Book';
+    src: url('../fonts/meta_serif/metaserifot-book.eot');
+    src: local('☺'), url('../fonts/meta_serif/metaserifot-book.woff') format('woff'), url('../fonts/meta_serif/metaserifot-book.ttf') format('truetype'), url('../fonts/meta_serif/metaserifot-book.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'altisbold';
+    src: url('../fonts/altis_bold/altis-bold-webfont.eot');
+    src: url('../fonts/altis_bold/altis-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/altis_bold/altis-bold-webfont.woff') format('woff'),
+         url('../fonts/altis_bold/altis-bold-webfont.ttf') format('truetype'),
+         url('../fonts/altis_bold/altis-bold-webfont.svg#altisbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.meta_serif {
+    font-family: 'MetaSerifOT-Book';
+    -webkit-font-smoothing: antialiased;
+}
+
+.altisbold {
+    font-family: 'altisbold';
+    -webkit-font-smoothing: antialiased;
+}
+

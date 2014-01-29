@@ -1,0 +1,91 @@
+.snap-drawer {
+  @include box-sizing(border-box);
+  padding: 30px 30px 15px;
+}
+
+#draw-menu {
+  display: block;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: $header-height;
+  height: $header-height;
+  z-index: 10;
+  background-color: $green;
+  @include transition(width 310ms);
+  &.opened-menu {
+    width: 320px;
+  }
+  &:hover {
+    background-color: adjust-lightness($green,3%);
+    cursor: pointer;
+  }
+}
+
+.menu-icon {
+  width: 24px;
+  margin: 27px auto 0 auto;
+}
+
+.menu-line {
+  list-style-type: none;
+  width: 24px;
+  margin-bottom: 4px;
+  height: 2px;
+  background-color: #FFFFFF;
+}
+
+.menu {
+  margin-top: $header-height + 40px;
+  list-style-type: none;
+  margin-left: 0;
+  li {
+    line-height: 42px;
+  }
+}
+
+.large-menu-item, .dimmed-link {
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.large-menu-item {
+  text-decoration: none;
+  font-size: 24px;
+  color: $navy-light;
+  &:hover {
+    color: adjust-lightness($navy-light, 15%);
+  }
+}
+
+.dimmed-link {
+  color: $navy-mid;
+  &:hover {
+    color: adjust-lightness($navy-mid, 15%);
+  }
+}
+.subscribe-header {
+  margin-bottom: 8px;
+  color: adjust-lightness($navy-light, 20%);
+}
+#mc_embed_signup {
+  margin-top: 60px;
+}
+
+.indicates-required {
+  font-style: italic;
+  text-align: right;
+  color: $red;
+}
+
+.snap-drawer {
+  background-color: #101e2c;
+}
+
+.twitter-follow {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 260px;
+}

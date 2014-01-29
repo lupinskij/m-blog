@@ -1,0 +1,44 @@
+footer {
+  background-color: #edf3f7;
+  padding: ($spacing-block + 14) 0;
+  .wrapper {
+    margin-top: 0;
+  }
+}
+
+.footer-slogan {
+  @include below(600px) {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+.footer-links {
+  list-style-type: none;
+  margin: 0;
+  li {
+    margin: 3px 20px 0 0;
+    font-size: 14px;
+    display: inline-block;
+    font-family: 'altisbold';
+    -webkit-font-smoothing: antialiased;
+    &:last-child {
+      margin-right: 0;
+    }
+    a {
+      text-decoration: none;
+      color: adjust-lightness($navy-light, 10%);
+      &:hover {
+        color: $navy-mid;
+      }
+    }
+  }
+  @include hideAt(600px);
+}
+
+.small-slogan {
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 2px;
+  font-size: 14px;
+}
