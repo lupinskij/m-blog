@@ -23,7 +23,7 @@ Feel free to remix and reuse. Feel free to open PR's back into this repo to impr
 ## Seeding with data
 A common problem is ""well now that I have it running how can I get content into the blog?"
 
-* Visit [tumblr-to-ghost.herokuapp.com/](tumblr-to-ghost.herokuapp.com/‎
+* Visit [tumblr-to-ghost.herokuapp.com/](http://tumblr-to-ghost.herokuapp.com/‎
 )
 * [http://localhost:2368/ghost/debug](http://localhost:2368/ghost/debug)
 
