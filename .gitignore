@@ -1,3 +1,4 @@
 node_modules/
 .DS_Store
 *.scssc
+content/data/ghost-dev.db
