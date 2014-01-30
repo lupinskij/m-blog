@@ -29,6 +29,16 @@ p, li, h3 {
   @include adjust-font-size-to(18px);
 }
 
+blockquote {
+  border-left: 3px solid $green;
+  padding-left: 20px;
+  margin: $spacing-block 0;
+  p {
+    color: $navy-light;
+    font-style: italic;
+  }
+}
+
 h1 {
   @include adjust-font-size-to(32px);
   color: $navy;
