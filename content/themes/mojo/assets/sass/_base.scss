@@ -29,6 +29,10 @@ p, li, h3 {
   @include adjust-font-size-to(18px);
 }
 
+strong {
+  font-weight: bold;
+}
+
 blockquote {
   border-left: 3px solid $green;
   padding-left: 20px;
