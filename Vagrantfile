@@ -28,4 +28,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   ## Set up a shared folder.
   config.vm.synced_folder "shared/", "/home/vagrant/shared"
 
+  config.vm.provider :digital_ocean do |provider, override|
+    override.ssh.private_key_path = '~/.ssh/id_rsa'
+    override.vm.box = 'digital_ocean'
+    override.vm.box_url = "https://github.com/smdahlen/vagrant-digitalocean/raw/master/box/digital_ocean.box"
+
+    provider.client_id = ENV['DIGITAL_OCEAN_CLIENT_ID']
+    provider.api_key = ENV['DIGITAL_OCEAN_API_KEY']
+  end
 end
