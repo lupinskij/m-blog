@@ -25,7 +25,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # within the machine from a port on the host machine. If you're using either port a new one will be autoatically used.
   config.vm.network :forwarded_port, guest: 2368, host: 80, auto_correct: true
 
-  config.vm.define :blog do |machine|
+  config.vm.define :dev do |machine|
+  end
+
+  config.vm.define :production do |machine|
     machine.vm.hostname = "m-ghost-blog"
   end
 
