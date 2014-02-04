@@ -20,10 +20,16 @@ Feel free to remix and reuse. Feel free to open PR's back into this repo to impr
 * view at [http://localhost:2368/](http://localhost:2368/)
 * create an account / content at [http://localhost:2368/ghost](http://localhost:2368/ghost)
 
+## Deploying
+* install vagrant
+* install vagrant-digitalocean plugin
+* acquire the deploy ssh and api keys
+* set DIGITAL_OCEAN_CLIENT_ID and DIGITAL_OCEAN_API_KEY environment variables
+* run vagrant provision
+
 ## Seeding with data
 A common problem is ""well now that I have it running how can I get content into the blog?"
 
 * Visit [tumblr-to-ghost.herokuapp.com/](http://tumblr-to-ghost.herokuapp.com/‎
 )
 * [http://localhost:2368/ghost/debug](http://localhost:2368/ghost/debug)
-
