@@ -686,12 +686,17 @@
     Ghost.Views.Debug = Ghost.View.extend({
         events: {
             "click .settings-menu a": "handleMenuClick",
+            "click #startupload": "handleUploadClick",
             "click .js-delete": "handleDeleteClick"
         },
 
         initialize: function () {
+            var view = this;
+
+            this.uploadButton = this.$el.find('#startupload');
+
             // Disable import button and initizalize BlueImp file upload
-            $('#startupload').prop('disabled', true);
+            this.uploadButton.prop('disabled', 'disabled');
             $('#importfile').fileupload({
                 url: Ghost.paths.apiRoot + '/db/',
                 limitMultiFileUploads: 1,
@@ -702,16 +707,12 @@
                 dataType: 'json',
                 add: function (e, data) {
                     /*jslint unparam:true*/
-                    // unregister click event to preveng duplicate binding
-                    $('#startupload').off("click");
-                    data.context = $('#startupload').prop('disabled', false)
-                        .click(function () {
-                            $('#startupload').prop('disabled', true);
-                            data.context = $('#startupload').text('Importing');
-                            data.submit();
-                            // unregister click event to allow different subsequent uploads
-                            $('#startupload').off('click');
-                        });
+
+                    // Bind the upload data to the view, so it is
+                    // available to the click handler, and enable the
+                    // upload button.
+                    view.fileUploadData = data;
+                    data.context = view.uploadButton.removeProp('disabled');
                 },
                 done: function (e, data) {
                     /*jslint unparam:true*/
@@ -756,6 +757,18 @@
             this.$("#debug-" + $target.attr("class")).show();
 
             return false;
+        },
+
+        handleUploadClick: function (ev) {
+            ev.preventDefault();
+
+            if (!this.uploadButton.prop('disabled')) {
+                this.fileUploadData.context = this.uploadButton.text('Importing');
+                this.fileUploadData.submit();
+            }
+
+            // Prevent double post by disabling the button.
+            this.uploadButton.prop('disabled', 'disabled');
         },
 
         handleDeleteClick: function (ev) {
@@ -823,6 +836,7 @@
         }
     });
 }());
+
 // The Tag UI area associated with a post
 
 /*global window, document, setTimeout, $, _, Backbone, Ghost */
@@ -959,6 +973,12 @@
             var $target = $(e.currentTarget),
                 searchTerm = $.trim($target.val());
 
+            if (searchTerm) {
+                this.showSuggestions($target, searchTerm);
+            } else {
+                this.$suggestions.hide();
+            }
+
             if (e.keyCode === this.keys.UP) {
                 e.preventDefault();
                 if (this.$suggestions.is(":visible")) {
@@ -983,12 +1003,6 @@
 
             if (e.keyCode === this.keys.UP || e.keyCode === this.keys.DOWN) {
                 return false;
-            }
-
-            if (searchTerm) {
-                this.showSuggestions($target, searchTerm);
-            } else {
-                this.$suggestions.hide();
             }
         },
 
@@ -1906,6 +1920,7 @@
     Ghost.Views.Signup = Ghost.View.extend({
 
         initialize: function () {
+            this.submitted = "no";
             this.render();
         },
 
@@ -1937,10 +1952,12 @@
             Ghost.Validate.check(name, "Please enter a name").len(1);
             Ghost.Validate.check(email, "Please enter a correct email address").isEmail();
             Ghost.Validate.check(password, "Your password is not long enough. It must be at least 8 characters long.").len(8);
+            Ghost.Validate.check(this.submitted, "Ghost is signing you up. Please wait...").equals("no");
 
             if (Ghost.Validate._errors.length > 0) {
                 Ghost.Validate.handleErrors();
             } else {
+                this.submitted = "yes";
                 $.ajax({
                     url: Ghost.paths.subdir + '/ghost/signup/',
                     type: 'POST',
@@ -1956,6 +1973,7 @@
                         window.location.href = msg.redirect;
                     },
                     error: function (xhr) {
+                        this.submitted = "no";
                         Ghost.notifications.clearEverything();
                         Ghost.notifications.addItem({
                             type: 'error',
@@ -2054,6 +2072,7 @@
                 ne2Password = this.$('input[name="ne2password"]').val();
 
             if (newPassword !== ne2Password) {
+                Ghost.notifications.clearEverything();
                 Ghost.notifications.addItem({
                     type: 'error',
                     message: "Your passwords do not match.",
@@ -2102,6 +2121,10 @@
 (function () {
     "use strict";
 
+    var parseDateFormats = ["DD MMM YY HH:mm", "DD MMM YYYY HH:mm", "DD/MM/YY HH:mm", "DD/MM/YYYY HH:mm",
+            "DD-MM-YY HH:mm", "DD-MM-YYYY HH:mm", "YYYY-MM-DD HH:mm"],
+        displayDateFormat = 'DD MMM YY @ HH:mm';
+
     Ghost.View.PostSettings = Ghost.View.extend({
 
         events: {
@@ -2114,11 +2137,10 @@
 
         initialize: function () {
             if (this.model) {
+                // These three items can be updated outside of the post settings menu, so have to be listened to.
                 this.listenTo(this.model, 'change:id', this.render);
-                this.listenTo(this.model, 'change:status', this.render);
-                this.listenTo(this.model, 'change:published_at', this.render);
-                this.listenTo(this.model, 'change:page', this.render);
                 this.listenTo(this.model, 'change:title', this.updateSlugPlaceholder);
+                this.listenTo(this.model, 'change:published_at', this.updatePublishedDate);
             }
         },
 
@@ -2126,8 +2148,7 @@
             var slug = this.model ? this.model.get('slug') : '',
                 pubDate = this.model ? this.model.get('published_at') : 'Not Published',
                 $pubDateEl = this.$('.post-setting-date'),
-                $postSettingSlugEl = this.$('.post-setting-slug'),
-                publishedDateFormat = 'DD MMM YY @ HH:mm';
+                $postSettingSlugEl = this.$('.post-setting-slug');
 
             $postSettingSlugEl.val(slug);
 
@@ -2138,10 +2159,10 @@
 
             // Insert the published date, and make it editable if it exists.
             if (this.model && this.model.get('published_at')) {
-                pubDate = moment(pubDate).format(publishedDateFormat);
+                pubDate = moment(pubDate).format(displayDateFormat);
                 $pubDateEl.attr('placeholder', '');
             } else {
-                $pubDateEl.attr('placeholder', moment().format(publishedDateFormat));
+                $pubDateEl.attr('placeholder', moment().format(displayDateFormat));
             }
 
             if (this.model && this.model.get('id')) {
@@ -2227,6 +2248,7 @@
                 },
                 error : function (model, xhr) {
                     /*jslint unparam:true*/
+                    slugEl.value = model.previous('slug');
                     Ghost.notifications.addItem({
                         type: 'error',
                         message: Ghost.Views.Utils.getRequestErrorMessage(xhr),
@@ -2236,13 +2258,24 @@
             });
         }, 500),
 
+
+        updatePublishedDate: function () {
+            var pubDate = this.model.get('published_at') ? moment(this.model.get('published_at'))
+                    .format(displayDateFormat) : '',
+                $pubDateEl = this.$('.post-setting-date');
+
+            // Only change the date if it's different
+            if (pubDate && $pubDateEl.val() !== pubDate) {
+                $pubDateEl.val(pubDate);
+            }
+        },
+
         editDate: _.debounce(function (e) {
             e.preventDefault();
             var self = this,
-                parseDateFormats = ['DD MMM YY HH:mm', 'DD MMM YYYY HH:mm', 'DD/MM/YY HH:mm', 'DD/MM/YYYY HH:mm', 'DD-MM-YY HH:mm', 'DD-MM-YYYY HH:mm'],
-                displayDateFormat = 'DD MMM YY @ HH:mm',
                 errMessage = '',
-                pubDate = self.model.get('published_at'),
+                pubDate = self.model.get('published_at') ? moment(self.model.get('published_at'))
+                    .format(displayDateFormat) : '',
                 pubDateEl = e.currentTarget,
                 newPubDate = pubDateEl.value,
                 pubDateMoment,
@@ -2325,6 +2358,8 @@
                 },
                 error : function (model, xhr) {
                     /*jslint unparam:true*/
+                    //  Reset back to original value
+                    pubDateEl.value = pubDateMoment ? pubDateMoment.format(displayDateFormat) : '';
                     Ghost.notifications.addItem({
                         type: 'error',
                         message: Ghost.Views.Utils.getRequestErrorMessage(xhr),
@@ -2363,6 +2398,7 @@
                 },
                 error : function (model, xhr) {
                     /*jslint unparam:true*/
+                    pageEl.prop('checked', model.previous('page'));
                     Ghost.notifications.addItem({
                         type: 'error',
                         message: Ghost.Views.Utils.getRequestErrorMessage(xhr),

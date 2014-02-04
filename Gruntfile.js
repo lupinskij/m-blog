@@ -22,7 +22,7 @@ var path           = require('path'),
         '!content/images/**',
         'content/images/README.md',
         '!content/themes/**',
-        'content/themes/mojo/**',
+        'content/themes/casper/**',
         '!content/plugins/**',
         'content/plugins/README.md',
         '!node_modules/**',
@@ -71,8 +71,8 @@ var path           = require('path'),
                     tasks: ['handlebars']
                 },
                 sass: {
-                    files: ['<%= paths.adminAssets %>/sass/**/*',, 'content/themes/mojo/assets/sass/*.scss'],
-                    tasks: ['sass:admin', 'sass:mojo']
+                    files: ['<%= paths.adminAssets %>/sass/**/*'],
+                    tasks: ['sass:admin']
                 },
                 concat: {
                     files: [
@@ -87,9 +87,9 @@ var path           = require('path'),
                 livereload: {
                     files: [
                         // Theme CSS
-                        'content/themes/mojo/css/*.css',
+                        'content/themes/casper/css/*.css',
                         // Theme JS
-                        'content/themes/mojo/js/*.js',
+                        'content/themes/casper/js/*.js',
                         // Admin CSS
                         '<%= paths.adminAssets %>/css/*.css',
                         // Admin JS
@@ -259,11 +259,6 @@ var path           = require('path'),
             // ### Config for grunt-contrib-sass
             // Compile all the SASS!
             sass: {
-                mytheme: {
-                     files: {
-                         'content/themes/THEMENAME/assets/styles.css': 'content/themes/THEMENAME/assets/sass/*.scss'
-                     }
-                },
                 admin: {
                     files: {
                         '<%= paths.adminAssets %>/css/screen.css': '<%= paths.adminAssets %>/sass/screen.scss'

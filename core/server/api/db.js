@@ -76,7 +76,6 @@ db = {
             try {
                 importData = JSON.parse(fileContents);
             } catch (e) {
-                console.log(e);
                 return when.reject(new Error("Failed to parse the import file"));
             }
 
