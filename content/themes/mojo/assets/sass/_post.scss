@@ -79,3 +79,13 @@
   padding: $spacing-block 0;
   background-color: #f6f9fb;
 }
+p code {
+  font-size: 14px;
+  background-color: adjust-lightness($yellow, 47%);
+  padding: 4px;
+}
+code {
+  font-family: "Monaco","Courier New",Courier,sans-serif;
+  font-size: 12px;
+  @include box-sizing(border-box);
+}

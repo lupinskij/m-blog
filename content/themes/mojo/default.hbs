@@ -19,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset "css/main.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "css/snap.css"}}" />
     <link rel="stylesheet" type="text/css" href="{{asset "css/prettify.css"}}" />
-    <link rel="stylesheet" type="text/css" href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css"></link> 
+    <link rel="stylesheet" type="text/css" href="http://google-code-prettify.googlecode.com/svn/trunk/src/prettify.css"></link>
     {{! Ghost outputs important style and meta data with this tag }}
     {{ghost_head}}
 </head>
@@ -27,12 +27,14 @@
     <div class="snap-drawers">
         <div class="snap-drawer snap-drawer-right">
             <ul class="menu">
-                <li><a href="http://mojotech.com" class="large-menu-item">Home</a></li>
-                <li><a href="http://mojotech.com/experience" class="large-menu-item">Experience</a></li>
-                <li><a href="http://mojotech.com/work" class="large-menu-item">Work</a></li>
-                <li><a href="http://mojotech.com/process" class="large-menu-item dimmed-link">Process</a></li>
-                <li><a href="http://mojotech.com/people" class="large-menu-item dimmed-link">People</a></li>
-                <li><a href="http://mojotech.com/contact" class="large-menu-item dimmed-link">Contact</a></li>
+                <li><a href="#" class="large-menu-item">Home</a></li>
+                <li><a href="#" class="large-menu-item">About Us</a></li>
+                <li><a href="#" class="large-menu-item">Experience</a></li>
+                <li><a href="#" class="large-menu-item">Work</a></li>
+                <li><a href="#" class="large-menu-item dimmed-link">Process</a></li>
+                <li><a href="#" class="large-menu-item dimmed-link">People</a></li>
+                <li><a href="#" class="large-menu-item dimmed-link">Contact</a></li>
+                <li><a href="#" class="large-menu-item dimmed-link">Blog</a></li>
             </ul>
             <div id="mc_embed_signup">
             <form action=
@@ -44,7 +46,7 @@
                 <label for="mce-EMAIL">Email Address <span class="asterisk">*</span></label>
                 <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" />
             </div>
-{{!--             
+{{!--
             <div class="indicates-required">
                 <span class="asterisk">*</span> indicates required
             </div> --}}
@@ -109,13 +111,13 @@
     {{! Ghost outputs important scripts and data with this tag }}
     {{ghost_foot}}
 
-    {{! The main JavaScript file for Casper }}
+    {{! The main JavaScript file for MojoTechTheme }}
     <script>
         function styleCode() {
             if (typeof disableStyleCode != 'undefined') { return; }
 
             var a = false;
-            
+
             $('code').each(function() {
                 if (!$(this).hasClass('prettyprint')) {
                     $(this).addClass('prettyprint');
@@ -123,7 +125,7 @@
                 }
             });
 
-            if (a) { prettyPrint(); } 
+            if (a) { prettyPrint(); }
         }
 
         $(function() {styleCode();});
