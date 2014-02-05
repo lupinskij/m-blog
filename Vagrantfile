@@ -27,9 +27,32 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     provider.private_networking = true
   end
 
+  config.vm.define :dev do |m|
+    m.vm.hostname = 'm-blog'
+    m.vm.provision :shell ,inline: <<-SHELL
+      if [ -z $(getent passwd vagrant) ]; then
+        sudo useradd vagrant
+      fi
+    SHELL
+
+    m.vm.provision :docker
+    m.vm.provision :shell, inline: <<-SHELL
+      sudo mkdir -p /var/ghost/content/data
+      sudo mkdir -p /var/ghost/content/images
+      sudo docker build -t blog /vagrant
+      sudo docker stop blog
+      sudo docker rm blog
+      sudo docker run -d -e NODE_ENV=production -p 80:8080 -v /var/ghost/content/data:/ghost/content/data:rw -v /var/ghost/content/images:/ghost/content/images:rw -name blog blog
+    SHELL
+  end
+
   config.vm.define :production do |m|
     m.vm.hostname = 'm-blog'
-    m.vm.provision :shell ,inline: 'sudo useradd vagrant'
+    m.vm.provision :shell ,inline: <<-SHELL
+      if [ -z $(getent passwd vagrant) ]; then
+        sudo useradd vagrant
+      fi
+    SHELL
     m.vm.provision :docker
     m.vm.provision :shell, inline: <<-SHELL
       sudo mkdir -p /var/ghost/content/data
