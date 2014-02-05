@@ -29,7 +29,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define :dev do |m|
-    m.vm.hostname = 'm-blog'
     m.vm.provision :shell ,inline: <<-SHELL
       if [ -z $(getent passwd vagrant) ]; then
         sudo useradd vagrant
@@ -48,7 +47,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define :production do |m|
-    m.vm.hostname = 'm-blog'
     m.vm.provision :shell ,inline: <<-SHELL
       if [ -z $(getent passwd vagrant) ]; then
         sudo useradd vagrant
