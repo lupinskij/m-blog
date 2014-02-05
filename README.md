@@ -17,6 +17,11 @@ Feel free to remix and reuse. Feel free to open PR's back into this repo to impr
 * set DIGITAL_OCEAN_CLIENT_ID and DIGITAL_OCEAN_API_KEY environment variables
 * vagrant up production --provider=digital_ocean
 
+* redeploying
+  * vagrant provision production
+
+* to be able to deploy your public key must be in ~/.ssh/authorized_keys on the droplet
+
 ## Seeding with data
 A common problem is ""well now that I have it running how can I get content into the blog?"
 
