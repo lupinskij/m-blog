@@ -42,6 +42,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       sudo docker build -t blog /vagrant
       sudo docker stop blog
       sudo docker rm blog
+      sudo apt-get install -y nginx
+      sudo nginx -s stop
+      sudo nginx -c /vagrant/nginx.conf
       sudo docker run -d -e NODE_ENV=development -p 8080:8080 -v /var/ghost/content/data:/ghost/content/data:rw -v /var/ghost/content/images:/ghost/content/images:rw -name blog blog
     SHELL
   end
@@ -59,6 +62,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       sudo docker build -t blog /vagrant
       sudo docker stop blog
       sudo docker rm blog
+      sudo apt-get install -y nginx
+      sudo nginx -s stop
+      sudo nginx -c /vagrant/nginx.conf
       sudo docker run -d -e NODE_ENV=production -p 8080:8080 -v /var/ghost/content/data:/ghost/content/data:rw -v /var/ghost/content/images:/ghost/content/images:rw -name blog blog
     SHELL
   end
