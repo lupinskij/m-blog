@@ -5,7 +5,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box      = 'precise64'
-  config.vm.network 'forwarded_port', guest: 80, host: 8080, auto_correct: true
+  config.vm.network 'forwarded_port', guest: 8080, host: 8080, auto_correct: true
 
   #"http://opscode-vm-bento.s3.amazonaws.com/vagrant/vmware/opscode_fedora-19_chef-provisionerless.box"
 
@@ -29,7 +29,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   config.vm.define :dev do |m|
-    m.vm.hostname = 'm-blog'
     m.vm.provision :shell ,inline: <<-SHELL
       if [ -z $(getent passwd vagrant) ]; then
         sudo useradd vagrant
@@ -43,12 +42,14 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       sudo docker build -t blog /vagrant
       sudo docker stop blog
       sudo docker rm blog
-      sudo docker run -d -e NODE_ENV=development -p 80:8080 -v /var/ghost/content/data:/ghost/content/data:rw -v /var/ghost/content/images:/ghost/content/images:rw -name blog blog
+      sudo apt-get install -y nginx
+      sudo nginx -s stop
+      sudo nginx -c /vagrant/nginx.conf
+      sudo docker run -d -e NODE_ENV=development -p 8080:8080 -v /var/ghost/content/data:/ghost/content/data:rw -v /var/ghost/content/images:/ghost/content/images:rw -name blog blog
     SHELL
   end
 
   config.vm.define :production do |m|
-    m.vm.hostname = 'm-blog'
     m.vm.provision :shell ,inline: <<-SHELL
       if [ -z $(getent passwd vagrant) ]; then
         sudo useradd vagrant
@@ -58,10 +59,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     m.vm.provision :shell, inline: <<-SHELL
       sudo mkdir -p /var/ghost/content/data
       sudo mkdir -p /var/ghost/content/images
-      sudo docker build -t blog /vagrant
+      sudo docker build -no-cache -t blog /vagrant
       sudo docker stop blog
       sudo docker rm blog
-      sudo docker run -d -e NODE_ENV=production -p 80:8080 -v /var/ghost/content/data:/ghost/content/data:rw -v /var/ghost/content/images:/ghost/content/images:rw -name blog blog
+      sudo apt-get install -y nginx
+      sudo nginx -s stop
+      sudo nginx -c /vagrant/nginx.conf
+      sudo docker run -d -e NODE_ENV=production -p 8080:8080 -v /var/ghost/content/data:/ghost/content/data:rw -v /var/ghost/content/images:/ghost/content/images:rw -name blog blog
     SHELL
   end
 
