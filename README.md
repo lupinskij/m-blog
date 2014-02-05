@@ -5,31 +5,21 @@ Feel free to remix and reuse. Feel free to open PR's back into this repo to impr
 
 
 ## Dev
-* install node if you do not alreay have it
-* git submodule update --init
-* bundle
-* npm install -g grunt-cli
-* npm install
-* grunt init
-* npm start
-
-## Running
-* install node [if you do not already have it]
-* npm install --productions
-* npm start
-* view at [http://localhost:2368/](http://localhost:2368/)
-* create an account / content at [http://localhost:2368/ghost](http://localhost:2368/ghost)
+* install vagrant
+* vagrant up dev
+* view at [http://localhost:8080/](http://localhost:8080/)
+* create an account / content at [http://localhost:8080/ghost](http://localhost:8080/ghost)
 
 ## Deploying
 * install vagrant
 * install vagrant-digitalocean plugin
 * acquire the deploy ssh and api keys
 * set DIGITAL_OCEAN_CLIENT_ID and DIGITAL_OCEAN_API_KEY environment variables
-* run vagrant provision
+* vagrant up production --provider=digital_ocean
 
 ## Seeding with data
 A common problem is ""well now that I have it running how can I get content into the blog?"
 
 * Visit [tumblr-to-ghost.herokuapp.com/](http://tumblr-to-ghost.herokuapp.com/‎
 )
-* [http://localhost:2368/ghost/debug](http://localhost:2368/ghost/debug)
+* [http://localhost:8080/ghost/debug](http://localhost:8080/ghost/debug)
