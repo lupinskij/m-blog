@@ -39,7 +39,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     m.vm.provision :shell, inline: <<-SHELL
       sudo mkdir -p /var/ghost/content/data
       sudo mkdir -p /var/ghost/content/images
-      sudo docker build -t blog /vagrant
+      sudo docker build -rm -t blog /vagrant
       sudo docker stop blog
       sudo docker rm blog
       sudo apt-get install -y nginx
@@ -60,7 +60,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     m.vm.provision :shell, inline: <<-SHELL
       sudo mkdir -p /var/ghost/content/data
       sudo mkdir -p /var/ghost/content/images
-      sudo docker build -no-cache -t blog /vagrant
+      sudo docker build -rm -no-cache -t blog /vagrant
       sudo docker stop blog
       sudo docker rm blog
       sudo apt-get install -y nginx
