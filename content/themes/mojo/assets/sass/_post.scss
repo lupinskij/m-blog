@@ -83,6 +83,9 @@ p code {
   font-size: 14px;
   background-color: adjust-lightness($yellow, 47%);
   padding: 4px;
+  span {
+    color: $navy-mid !important;
+  }
 }
 code {
   font-family: "Monaco","Courier New",Courier,sans-serif;
