@@ -29,6 +29,10 @@ p, li, h3 {
   @include adjust-font-size-to(18px);
 }
 
+em, i {
+  font-style: italic;
+}
+
 strong {
   font-weight: bold;
 }
