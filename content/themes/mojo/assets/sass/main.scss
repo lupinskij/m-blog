@@ -37,6 +37,27 @@ body {
   }
 }
 
+.overview-back {
+  border: solid 1px $green;
+  z-index: 10;
+  cursor: pointer;
+  text-indent: -99999px;
+
+  background: {
+    image: url('../images/back-arrow.png');
+    size: 40%;
+    repeat: no-repeat;
+    position: center center;
+  };
+
+  @include transition(background 300ms);
+  @include pos(fixed, 0, false, false, 0);
+  @include size(70px);
+  @include below(481px) {
+    display: none;
+  }
+}
+
 .pagination {
   position: relative;
   padding-bottom: $spacing-block;
