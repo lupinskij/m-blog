@@ -42,6 +42,8 @@ body {
   z-index: 10;
   cursor: pointer;
   text-indent: -99999px;
+  border-left: 0;
+  border-top: 0;
 
   background: {
     image: url('../images/back-arrow.png');
