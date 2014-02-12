@@ -47,7 +47,7 @@ blockquote {
   p {
     color: $navy-light;
     font-style: italic;
-    @include adjust-font-size-to(19px);
+    @include adjust-font-size-to(24px);
   }
 }
 
