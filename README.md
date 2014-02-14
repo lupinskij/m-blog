@@ -5,10 +5,12 @@ Feel free to remix and reuse. Feel free to open PR's back into this repo to impr
 
 
 ## Dev
-* install vagrant
-* vagrant up dev
-* view at [http://localhost:8080/](http://localhost:8080/)
+* `npm install`
+* `node start`
 * create an account / content at [http://localhost:8080/ghost](http://localhost:8080/ghost)
+* set the theme to mojo
+* `compass watch content/themes/mojo/`
+  - commit both your sass changes and compiled css
 
 ## Deploying
 * install vagrant
