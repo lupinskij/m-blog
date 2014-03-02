@@ -5,7 +5,7 @@
 
 #draw-menu {
   display: block;
-  position: fixed;
+  position: absolute;
   top: 0;
   right: 0;
   width: $header-height;
@@ -13,7 +13,11 @@
   z-index: 10;
   background-color: $green;
   @include transition(width 310ms);
+  @include above($large-snap) {
+    position: fixed;
+  }
   &.opened-menu {
+    position: fixed;
     width: 320px;
   }
   &:hover {
